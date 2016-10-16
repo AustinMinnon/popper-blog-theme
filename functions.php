@@ -104,8 +104,17 @@ add_action( 'widgets_init', 'popper_blog_widgets_init' );
 function popper_blog_scripts() {
 	wp_enqueue_style( 'popper-blog-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'popper-blog-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
-
+        // Add Local Fonts: Fira Sans & Merriweather
+        
+        wp_enqueue_style( 'popper-blog-local-fonts', get_template_directory_uri() . '/fonts/custom-fonts.css');
+        wp_enqueue_style( 'popper-blog-font-awesome', get_template_directory_uri() . '/fonts/font-awesome-4.6.3/css/font-awesome.min.css');
+        
+	wp_enqueue_script( 'popper-blog-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), '20151215', true );
+        wp_localize_script( 'popper-blog-navigation', 'screenReaderText', array(
+		'expand'   => '<span class="screen-reader-text">' . __( 'expand child menu', 'popper-blog' ) . '</span>',
+		'collapse' => '<span class="screen-reader-text">' . __( 'collapse child menu', 'popper-blog' ) . '</span>',
+	) );
+        
 	wp_enqueue_script( 'popper-blog-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
