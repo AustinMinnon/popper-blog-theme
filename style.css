@@ -672,6 +672,130 @@ a:active {
 	content: "\f077";
 }
 
+.menu-toggle:hover,
+.menu-toggle:focus {
+    text-decoration: underline;
+}
+
+@media screen and (min-width: 50em) {
+	.menu-toggle {
+		display: none;
+	}
+	.main-navigation ul {
+		display: block;
+	}
+}
+
+/* Hovering menu */
+
+.main-navigation.toggled {
+    position: fixed;
+    bottom: 0;
+    padding: 1em;
+    z-index: 1;
+    
+}
+
+#primary-menu.nav-menu{
+    padding: 1em;
+    margin-bottom: 3em;
+    background-color: #000;
+}
+
+.main-navigation.toggled ul {
+    max-height: calc(100vh - 8em);
+    overflow-y: auto;
+}
+
+.main-navigation.toggled ul ul{
+    display:none;
+}
+
+.main-navigation.toggled ul ul.toggled-on,
+.main-navigation.toggled ul ul.toggled-on > ul {
+    display: block;
+}
+
+@media screen and (min-width: 50em) {
+    /* Position the menu in header for larger screens */
+    .main-navigation,
+    .main-navigation.toggled {
+        position: relative;
+        min-height: 3.5em;
+        max-width: 58em;
+        margin: 0 auto;
+        padding: 0 3.5em;
+        background-color: #000;
+        background-color: hsla(0, 0%, 0%, .7);
+    }
+    
+    .nav-menu {
+        padding: .3em 0 0 0;
+        background-color: transparent;
+    }
+    
+    .main-navigation ul,
+    .main-navigation.toggled ul {
+        max-height: none;
+        padding-left: 0;
+        text-align: center;
+    }
+    
+    .main-navigation.toggled ul {
+        overflow-y: visible;
+    }
+    
+    /* Display the menu items horizontally */
+    .main-navigation li {
+        display: inline-block;
+        border: none;
+    }
+    
+    /* Add an outline ot the dropdown menus */
+    .main-navigation ul ul {
+        outline: 1px solid #333;
+    }
+    
+    /* Create hover and focus contrast on drop-down menu items */
+    .main-navigation li li a:hover,
+    .main-navigation li li a:focus {
+        background: #eee;
+        color: #000;
+        text-decoration: none;
+    }
+    
+    /* Position drop-down menus absolutely */
+    .main-navigation ul ul.toggled-on {
+        position: absolute;
+        width: 12em;
+        display: block;
+        z-index: 10;
+        margin-left: 0;
+        background: #000;
+    }
+    .main-navigation ul ul ul.toggled-on {
+        position: relative;
+    }
+
+    /* Indent 3rd level drop-down menus */
+    .main-navigation ul ul ul a {
+        padding-left: 2em;
+    }
+
+    /* Simplify the drop-down toggle */
+    .dropdown-toggle {
+        top: 11px;
+        right: 12px;
+        border: none;
+    }
+
+    .dropdown-toggle::after {
+        line-height: 27px;
+        width: 27px;
+    }
+
+}
+
 /* Small menu. */
 .menu-toggle,
 .main-navigation.toggled ul {
@@ -688,16 +812,17 @@ a:active {
     background-color: #000;
     color: #fff;
     border: solid 2px #fff;
+    transition: all ease-out 400ms;
 }
 
-@media screen and (min-width: 37.5em) {
-	.menu-toggle {
-		display: none;
-	}
-	.main-navigation ul {
-		display: block;
-	}
+.menu-toggle.hide {
+    bottom: -2.5em;
 }
+
+.toggled .menu-toggle.hide {
+    bottom: 1em;
+}
+
 
 .site-main .comment-navigation,
 .site-main .posts-navigation,
