@@ -37,7 +37,10 @@ function popper_blog_posted_on() {
         //Display the author avatar if the author has a gravatar
         $author_id = get_the_author_meta( 'ID' );
         if (popperblog_validate_gravatar( $author_id ) ) {
+            echo '<div class="meta-content has-avatar">';
             echo '<div class="author-avatar">' . get_avatar( $author_id ) . '</div>';
+        }   else {
+            echo '<div class="meta-content">';
         }
         
 	echo '<span class="byline"> ' . $byline . '</span><span class="posted-on">' . $posted_on . '</span>'; // WPCS: XSS OK.
@@ -47,6 +50,7 @@ function popper_blog_posted_on() {
 		comments_popup_link( sprintf( wp_kses( __( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'popper-blog' ), array( 'span' => array( 'class' => array() ) ) ), get_the_title() ) );
 		echo '</span>';
 	}
+                echo '</div>';
 }
 endif;
 

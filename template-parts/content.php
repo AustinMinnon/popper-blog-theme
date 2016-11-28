@@ -19,6 +19,14 @@
 		endif;
 
 		if ( 'post' === get_post_type() ) : ?>
+                <?php 
+                
+                if ( has_excerpt( $post->ID ) ) {
+                    echo '<div class="deck">';
+                    echo '<p>' . get_the_excerpt() . '</p>';
+                    echo '</div><!-- .deck -->';           
+                }
+                ?>
 		<div class="entry-meta">
 			<?php popper_blog_posted_on(); ?>
 		</div><!-- .entry-meta -->
